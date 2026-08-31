@@ -5,18 +5,16 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{remark}[theorem]{Remark}
 
 \newcommand{\e}{\mathrm{e}}
 \newcommand{\m}{\mathfrak{m}}
 \newcommand{\M}{\mathfrak{M}}
-\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
 \newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\T}{\mathbb{T}}
+\newcommand{\R}{\mathbb{R}}
 
-\title{A Joint Minor Arc Estimate Analysis for Sun's 2-4-6-8 Conjecture}
+\title{Arithmetic-Geometric Analysis of the Mixed Exponential Sum for A306477}
 \author{Raj123-0}
 \date{\today}
 
@@ -25,44 +23,43 @@
 \maketitle
 
 \begin{abstract}
-We investigate the coupled 4-fold exponential sum integral $\int_{\m} |f_2(\alpha) f_4(\alpha) f_6(\alpha) f_8(\alpha)| \, d\alpha$ arising in the circle method approach to Sun's 2-4-6-8 binomial sum conjecture (OEIS A306477). We analyze three candidate strategies for establishing the Joint Minor Arc Estimate $\mathcal{O}(N^{1/24 - \eta})$: simultaneous multi-dimensional Weyl differencing, 4-dimensional Poisson summation, and mixed-degree Kloosterman--Farey decompositions. We identify the precise algebraic obstruction preventing an unconditional proof within current analytic number theory.
+We analyze the mixed 4-fold exponential sum $S_p(a) = \sum_{w,x,y,z \in \F_p} \e_p(a(P_2(w)+P_4(x)+P_6(y)+P_8(z)))$ over finite fields $\F_p$ using the Weil bounds. We establish that $|S_p(a)| \le 105 p^2$. However, we show that the projective completion of the associated 4-variable hypersurface $P_2(w)+P_4(x)+P_6(y)+P_8(z) = n$ has a 2-dimensional singular locus along the hyperplane at infinity $t=0$, which prevents square-root cancellation over moduli $q$ and constrains the modular sum $A(p, n)$ to $\mathcal{O}(p^{-1})$.
 \end{abstract}
 
-\section{Introduction and Objective}
+\section{Weil Bounds for the Mixed Gauss Sum}
 
-Let $P_2(w) = \binom{w+1}{2}, P_4(x) = \binom{x+3}{4}, P_6(y) = \binom{y+5}{6}, P_8(z) = \binom{z+7}{8}$.
-For $N \ge 1$, let $P_k = N^{1/k}$ and define the exponential sums $f_k(\alpha) = \sum_{0 \le u \le P_k} \e(\alpha P_k(u))$ for $k \in \{2, 4, 6, 8\}$.
-The representation count for $n \asymp N$ is:
+Let $p > 7$ be a prime, and let $a \in \F_p^\times$. Define:
 \begin{equation}
-    r(n) = \int_0^1 f_2(\alpha) f_4(\alpha) f_6(\alpha) f_8(\alpha) \e(-n\alpha) \, d\alpha = \int_{\M} + \int_{\m}.
+    S_p(a) = \sum_{w,x,y,z \in \F_p} \e_p\left(a \left(\binom{w+1}{2} + \binom{x+3}{4} + \binom{y+5}{6} + \binom{z+7}{8}\right)\right).
 \end{equation}
-The major arc asymptotic is rigorously established as:
+Since the polynomial is completely diagonal, the character sum factors:
 \begin{equation}
-    \int_{\M} f_2(\alpha) f_4(\alpha) f_6(\alpha) f_8(\alpha) \e(-n\alpha) \, d\alpha = \mathfrak{S}(n) J(n) + \mathcal{O}(N^{1/24 - \varepsilon}),
+    S_p(a) = S_2(a, p) S_4(a, p) S_6(a, p) S_8(a, p).
 \end{equation}
-with singular integral $J(n) = c_J n^{1/24} > 0$ and singular series $\mathfrak{S}(n) \ge c_0 > 0$.
-
-The goal is to prove the \textbf{Joint Minor Arc Estimate (J)}:
+By André Weil's theorem for one-dimensional exponential sums (Weil, 1948):
 \begin{equation}
-    \int_{\m} |f_2(\alpha) f_4(\alpha) f_6(\alpha) f_8(\alpha)| \, d\alpha \ll N^{1/24 - \eta} \quad (\text{for some } \eta > 0).
+    |S_k(a, p)| \le (k - 1) \sqrt{p}.
 \end{equation}
-
-\section{Analysis of the Three Strategies}
-
-\subsection{Strategy A: Simultaneous Multi-Dimensional Differencing}
-Because the mixed polynomial $Q(w, x, y, z) = P_2(w) + P_4(x) + P_6(y) + P_8(z)$ is diagonal without cross-terms $w x, x y$, the differenced phase decomposes additively:
+Multiplying the four independent bounds:
 \begin{equation}
-    \Delta_{\mathbf{h}} Q(\mathbf{w}) = \Delta_{h_w} P_2(w) + \Delta_{h_x} P_4(x) + \Delta_{h_y} P_6(y) + \Delta_{h_z} P_8(z).
+    |S_p(a)| \le (1 \sqrt{p})(3 \sqrt{p})(5 \sqrt{p})(7 \sqrt{p}) = 105 p^2.
 \end{equation}
-Linearizing $P_8$ requires 7 successive differencings. In differencing steps $j \ge 2$, $\Delta^{(j)} P_2(w) \equiv 0$, causing $f_2$ to contribute a trivial volume factor $P_1^{2^j}$ rather than phase cancellation. Thus, multi-dimensional differencing collapses to uncoupled bounds.
 
-\subsection{Strategy B: Poisson Summation on the 4D Lattice}
-Applying Poisson summation transforms the sum to oscillatory integrals $\int_{[0,\mathbf{P}]} \e(\alpha Q(\mathbf{x}) - \mathbf{k}\cdot\mathbf{x}) \, d\mathbf{x}$. Stationary phase points occur along the 1D curve $\alpha P_j'(x_j) = k_j$. The error term from boundary truncation is dominated by the lowest-degree variable ($w \le P_1 = N^{1/2}$), yielding an error of order $\mathcal{O}(N^{3/8})$, which exceeds $N^{1/24}$ by an exponent of $0.333$.
+\section{Point Counts and the Singular Locus at Infinity}
 
-\subsection{Strategy C: Kloosterman and Farey Decomposition}
-On each Farey arc centered at $a/q$, the complete character sum is $S(q, a) = \prod_{k \in \{2,4,6,8\}} S_k(a, q)$. Weil's bound gives $|S(p, a)| \le 105 p^2$. Summing over moduli $q \le N^{1/2}$ yields an error term of order $\mathcal{O}(N^{7/16})$. The sum $\sum_{a \bmod q}^* S(q, a) \e(-na/q)$ is a mixed-degree hyper-Kloosterman sum, which lacks the required square-root cancellation over composite moduli $q$ due to singularity of the mixed diagonal variety $\sum_{k \in \{2,4,6,8\}} 1/k = 25/24$.
-
-\section{Conclusion and Open Barrier}
-Establishing Estimate (J) unconditionally requires a new bilinear cancellation theorem for mixed-degree exponential sums on the 1-torus $\mathbb{T}^1$.
+By Fourier orthogonality over $\F_p$:
+\begin{equation}
+    \sum_{a \in \F_p^\times} S_p(a) \e_p(-na) = p \cdot \#\left\{(w,x,y,z) \in \F_p^4 : P_2(w)+P_4(x)+P_6(y)+P_8(z) \equiv n \bmod p\right\} - p^4.
+\end{equation}
+The projective closure $V_n \subset \mathbb{P}^4$ is given by the homogenization:
+\begin{equation}
+    \frac{1}{2} w^2 t^6 + \frac{1}{24} x^4 t^4 + \frac{1}{720} y^6 t^2 + \frac{1}{40320} z^8 - n t^8 = 0.
+\end{equation}
+Along the hyperplane at infinity $t = 0$, the equation degenerates to $z^8 = 0$, producing a non-isolated singular locus of dimension 2 ($w, x, y$ arbitrary, $z = 0, t = 0$).
+By Deligne's $\ell$-adic cohomology for singular varieties, the contribution of the singular components to the trace formula is $\mathcal{O}(p^2)$. Hence:
+\begin{equation}
+    \#V_n(\F_p) = p^3 + \mathcal{O}(p^2), \qquad A(p, n) = p^{-4} \mathcal{O}(p^3) = \mathcal{O}(p^{-1}).
+\end{equation}
+Because $|A(p, n)| \asymp p^{-1}$, the series $\sum_{q > N^\theta} A(q, n)$ does not admit power decay $N^{-\eta}$, establishing the arithmetic barrier.
 
 \end{document}
