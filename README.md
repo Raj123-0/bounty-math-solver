@@ -11,20 +11,20 @@ A computational toolkit and test framework developed by **Raj123-0** for indepen
 ## Disclaimer
 
 > **Important Notice on Scope and Proof Claims:**  
-> This repository is my independent work. It does not claim full novel proofs for open bounty problems (such as A306477). Claims of investigating bounties reflect **computational verification, search engines, and replication of existing published literature**, not novel peer-reviewed theorem proofs. All theoretical conjectures and historical formulations belong entirely to their original authors (e.g., Prof. Zhi-Wei Sun, Richard Rado).
+> This repository is my independent work. It does not claim full novel proofs for open bounty problems (such as A306477). Claims of investigating bounties reflect **computational verification, search engines, and replication of existing published literature**, not novel theorem proofs. All theoretical conjectures and historical formulations belong entirely to their original authors.
 
 ---
 
-## Studied Problems & Verification Status
+## Numerically Verified Problems & Status
 
 ### 1. 2-4-6-8 Binomial Sum Conjecture ([OEIS A306477](https://oeis.org/A306477))
 - **Original Conjecture**: Zhi-Wei Sun (2019) conjectured that every integer $n \ge 1$ can be expressed as:
   $$n = \binom{w+2}{2} + \binom{x+3}{4} + \binom{y+5}{6} + \binom{z+7}{8} \quad (w, x, y, z \ge 0)$$
-- **Repository Status**: We provide computational verification tools (`src/a306477_checker.py`) verifying positivity for $n$ up to $100,000$. **The full theoretical proof for all $n \ge 1$ remains an OPEN problem.**
+- **Repository Status**: We provide computational verification tools (`src/a306477_checker.py`) that verify positivity for $n$ up to $N = 100,000$. **The full theoretical proof for all $n \ge 1$ remains an OPEN problem.**
 
 ### 2. Mixed Polygonal Sums ([OEIS A287616](https://oeis.org/A287616))
-- **Original Work**: This module replicates and verifies results related to the published work of Zhi-Wei Sun (arXiv:1502.03056). Credit for the original theoretical formulation and conjecture belongs to Prof. Zhi-Wei Sun.
-- **Repository Status**: We implement an independent computational verifier (`src/ternary_polygonal_solver.py`) that checks representation positivity and confirms the unique representation cases $n \in \{0, 1, 2, 4, 7, 9, 22\}$.
+- **Published Proof**: The conjecture proposed by Zhi-Wei Sun was proved in June 2026 by Yichuan Cao, Dakai Guo, Ruichen Qiu, Ruyong Feng, and Xiao-Shan Gao in [*Every Nonnegative Integer Is a Sum of a Triangular, a Pentagonal, and a Heptagonal Number*](https://arxiv.org/abs/2606.26035) (arXiv:2606.26035). Credit for the original proof belongs entirely to Cao et al.
+- **Repository Status**: This module (`src/ternary_polygonal_solver.py`) provides an independent computational implementation that numerically replicates the representation positivity for $n \in [0, 50000]$ and confirms the 7 unique representation cases $n \in \{0, 1, 2, 4, 7, 9, 22\}$.
 
 ### 3. Non-Homogeneous 3-Color Rado Numbers ($x + y + c = z$)
 - **Conjectured Formula**: Based on SAT-based exploration, we hypothesize that for $c \ge 0$:
