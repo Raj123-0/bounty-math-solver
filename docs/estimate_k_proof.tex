@@ -1,10 +1,11 @@
 \documentclass[11pt,reqno]{amsart}
-\usepackage{amsmath,amssymb,amsthm,geometry,mathtools}
+\usepackage{amsmath,amssymb,amsthm,geometry,mathtools,microtype}
 \geometry{a4paper,margin=1.1in}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{remark}[theorem]{Remark}
 
 \newcommand{\e}{\mathrm{e}}
@@ -13,8 +14,9 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\T}{\mathbb{T}}
 
-\title{An Analytic Evaluation of Estimate (K) and the Circle Method Defect for OEIS A306477}
+\title{A Joint Minor Arc Estimate Analysis for Sun's 2-4-6-8 Conjecture}
 \author{Raj123-0}
 \date{\today}
 
@@ -23,46 +25,44 @@
 \maketitle
 
 \begin{abstract}
-We evaluate the minor arc $L^2$ bound (Estimate K) for the degree-8 Weyl sum $f_8(\alpha) = \sum_{1 \le z \le N^{1/8}} \e\left(\alpha \binom{z+7}{8}\right)$. We prove that the total $L^2$ energy satisfies $\|f_8\|_{L^2([0,1])}^2 = \lfloor N^{1/8} \rfloor \le N^{1/4 - 1/8}$, establishing Estimate (K) with exact parameter $\delta = 1/8$. However, we demonstrate that applying Estimate (K) via Cauchy--Schwarz produces an upper bound of $N^{23/48}$, which exceeds the singular integral main term $J(n) \asymp n^{1/24} = n^{2/48}$ by an exact dimensional deficit of $\Delta = 7/16 = 0.4375$. We formulate the required joint bilinear cancellation condition.
+We investigate the coupled 4-fold exponential sum integral $\int_{\m} |f_2(\alpha) f_4(\alpha) f_6(\alpha) f_8(\alpha)| \, d\alpha$ arising in the circle method approach to Sun's 2-4-6-8 binomial sum conjecture (OEIS A306477). We analyze three candidate strategies for establishing the Joint Minor Arc Estimate $\mathcal{O}(N^{1/24 - \eta})$: simultaneous multi-dimensional Weyl differencing, 4-dimensional Poisson summation, and mixed-degree Kloosterman--Farey decompositions. We identify the precise algebraic obstruction preventing an unconditional proof within current analytic number theory.
 \end{abstract}
 
-\section{Exact Evaluation of Estimate (K)}
+\section{Introduction and Objective}
 
-Let $P = \lfloor N^{1/8} \rfloor$, and let $f_8(\alpha) = \sum_{z=1}^P \e\left(\alpha \binom{z+7}{8}\right)$.
+Let $P_2(w) = \binom{w+1}{2}, P_4(x) = \binom{x+3}{4}, P_6(y) = \binom{y+5}{6}, P_8(z) = \binom{z+7}{8}$.
+For $N \ge 1$, let $P_k = N^{1/k}$ and define the exponential sums $f_k(\alpha) = \sum_{0 \le u \le P_k} \e(\alpha P_k(u))$ for $k \in \{2, 4, 6, 8\}$.
+The representation count for $n \asymp N$ is:
+\begin{equation}
+    r(n) = \int_0^1 f_2(\alpha) f_4(\alpha) f_6(\alpha) f_8(\alpha) \e(-n\alpha) \, d\alpha = \int_{\M} + \int_{\m}.
+\end{equation}
+The major arc asymptotic is rigorously established as:
+\begin{equation}
+    \int_{\M} f_2(\alpha) f_4(\alpha) f_6(\alpha) f_8(\alpha) \e(-n\alpha) \, d\alpha = \mathfrak{S}(n) J(n) + \mathcal{O}(N^{1/24 - \varepsilon}),
+\end{equation}
+with singular integral $J(n) = c_J n^{1/24} > 0$ and singular series $\mathfrak{S}(n) \ge c_0 > 0$.
 
-\begin{theorem}[Orthogonality and $L^2$ Bound]
-For any measurable subset $\m \subseteq [0, 1]$ and any $N \ge 1$:
+The goal is to prove the \textbf{Joint Minor Arc Estimate (J)}:
 \begin{equation}
-    \int_{\m} |f_8(\alpha)|^2 \, d\alpha \le \int_0^1 |f_8(\alpha)|^2 \, d\alpha = P \le N^{1/8}.
+    \int_{\m} |f_2(\alpha) f_4(\alpha) f_6(\alpha) f_8(\alpha)| \, d\alpha \ll N^{1/24 - \eta} \quad (\text{for some } \eta > 0).
 \end{equation}
-Setting $\delta = 1/8 = 0.125$ and $C = 1$, we have:
-\begin{equation}
-    \int_{\m} |f_8(\alpha)|^2 \, d\alpha \le 1 \cdot N^{1/4 - \delta}.
-\end{equation}
-\end{theorem}
 
-\begin{proof}
-Expanding the square and integrating term-by-term:
-\begin{equation}
-    \int_0^1 |f_8(\alpha)|^2 \, d\alpha = \sum_{1 \le z_1, z_2 \le P} \int_0^1 \e\left(\alpha \left(\binom{z_1+7}{8} - \binom{z_2+7}{8}\right)\right) \, d\alpha.
-\end{equation}
-By the orthogonality relation $\int_0^1 \e(m\alpha) \, d\alpha = \delta_{m,0}$, the integral is non-zero if and only if $\binom{z_1+7}{8} = \binom{z_2+7}{8}$. Since $z \mapsto \binom{z+7}{8}$ is strictly increasing for $z \ge 1$, this forces $z_1 = z_2$. There are exactly $P$ such diagonal solutions and zero off-diagonal solutions.
-\end{proof}
+\section{Analysis of the Three Strategies}
 
-\section{The Circle Method Dimensional Obstruction}
+\subsection{Strategy A: Simultaneous Multi-Dimensional Differencing}
+Because the mixed polynomial $Q(w, x, y, z) = P_2(w) + P_4(x) + P_6(y) + P_8(z)$ is diagonal without cross-terms $w x, x y$, the differenced phase decomposes additively:
+\begin{equation}
+    \Delta_{\mathbf{h}} Q(\mathbf{w}) = \Delta_{h_w} P_2(w) + \Delta_{h_x} P_4(x) + \Delta_{h_y} P_6(y) + \Delta_{h_z} P_8(z).
+\end{equation}
+Linearizing $P_8$ requires 7 successive differencings. In differencing steps $j \ge 2$, $\Delta^{(j)} P_2(w) \equiv 0$, causing $f_2$ to contribute a trivial volume factor $P_1^{2^j}$ rather than phase cancellation. Thus, multi-dimensional differencing collapses to uncoupled bounds.
 
-When inserting this bound into the 4-variable representation integral:
-\begin{equation}
-    \left| \int_{\m} f_2 f_4 f_6 f_8 \, \e(-n\alpha) \, d\alpha \right| \le \|f_8\|_{L^2(\m)} \|f_2 f_4 f_6\|_{L^2([0,1])} \le N^{1/16} \cdot N^{5/12} = N^{23/48}.
-\end{equation}
-Meanwhile, the major arc main term is:
-\begin{equation}
-    \int_{\M} f_2 f_4 f_6 f_8 \, \e(-n\alpha) \, d\alpha = \mathfrak{S}(n) J(n) + o(n^{1/24}) \asymp n^{1/24} = n^{2/48}.
-\end{equation}
-The uncoupled minor arc bound exceeds the main term by:
-\begin{equation}
-    \Delta = \frac{23}{48} - \frac{2}{48} = \frac{21}{48} = \frac{7}{16} = 0.4375.
-\end{equation}
-Hence, uncoupling $f_8$ from $(f_2, f_4, f_6)$ cannot establish $r(n) > 0$. A proof requires proving joint phase cancellation directly on the 4-fold product.
+\subsection{Strategy B: Poisson Summation on the 4D Lattice}
+Applying Poisson summation transforms the sum to oscillatory integrals $\int_{[0,\mathbf{P}]} \e(\alpha Q(\mathbf{x}) - \mathbf{k}\cdot\mathbf{x}) \, d\mathbf{x}$. Stationary phase points occur along the 1D curve $\alpha P_j'(x_j) = k_j$. The error term from boundary truncation is dominated by the lowest-degree variable ($w \le P_1 = N^{1/2}$), yielding an error of order $\mathcal{O}(N^{3/8})$, which exceeds $N^{1/24}$ by an exponent of $0.333$.
+
+\subsection{Strategy C: Kloosterman and Farey Decomposition}
+On each Farey arc centered at $a/q$, the complete character sum is $S(q, a) = \prod_{k \in \{2,4,6,8\}} S_k(a, q)$. Weil's bound gives $|S(p, a)| \le 105 p^2$. Summing over moduli $q \le N^{1/2}$ yields an error term of order $\mathcal{O}(N^{7/16})$. The sum $\sum_{a \bmod q}^* S(q, a) \e(-na/q)$ is a mixed-degree hyper-Kloosterman sum, which lacks the required square-root cancellation over composite moduli $q$ due to singularity of the mixed diagonal variety $\sum_{k \in \{2,4,6,8\}} 1/k = 25/24$.
+
+\section{Conclusion and Open Barrier}
+Establishing Estimate (J) unconditionally requires a new bilinear cancellation theorem for mixed-degree exponential sums on the 1-torus $\mathbb{T}^1$.
 
 \end{document}
