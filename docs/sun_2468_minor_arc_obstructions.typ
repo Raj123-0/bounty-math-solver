@@ -305,7 +305,8 @@ def numerical_quadrature_J(n: float) -> float:
     return c2 * c4 * c6 * c8 * val
 
 if __name__ == "__main__":
-    cJ = (math.gamma(0.5)*math.gamma(0.25)*math.gamma(1/6)*math.gamma(0.125)/math.gamma(25/24)) *          (2**0.5/2.0) * (24**0.25/4.0) * (720**(1/6)/6.0) * (40320**0.125/8.0)
+    cJ = (math.gamma(0.5)*math.gamma(0.25)*math.gamma(1/6)*math.gamma(0.125)/math.gamma(25/24)) * \
+         (2**0.5/2.0) * (24**0.25/4.0) * (720**(1/6)/6.0) * (40320**0.125/8.0)
     for n in [10, 50, 100]:
         num = numerical_quadrature_J(n)
         theo = cJ * (n ** (1/24))
