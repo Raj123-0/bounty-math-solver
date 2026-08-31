@@ -1,57 +1,54 @@
-# Mathematical Proofs & Algebraic Foundations for Solved Bounty Problems
+# Mathematical Theory & Verification Notes
 
-This document details the rigorous mathematical theory, algebraic reductions, and local-global analyses for the solved mathematical problems.
+**Author**: Raj123-0  
+**Repository**: `bounty-math-solver`
 
 ---
 
-## 1. Ternary Polygonal Number Representations ($135 Bounty — OEIS A287616)
+## 1. Mixed Polygonal Sum Representations (OEIS A287616)
 
-### Problem Statement
-Prove that every nonnegative integer $n \in \mathbb{N}$ can be written as:
+### Attribution
+The conjecture studied in this module was formulated by **Prof. Zhi-Wei Sun** (arXiv:1502.03056, 2015). The theoretical formulation and reduction credit belongs to the original author.
+
+### Statement
+For any integer $n \ge 0$, there exist non-negative integers $x, y, z \in \mathbb{N}$ such that:
 $$n = T_x + P_y + H_z$$
-where $x, y, z \in \mathbb{N} = \{0, 1, 2, \dots\}$, and:
+where:
 $$T_x = \frac{x(x+1)}{2}, \quad P_y = \frac{y(3y+1)}{2}, \quad H_z = \frac{z(5z+1)}{2}$$
-Furthermore, prove that the representation is unique ($a(n)=1$) if and only if $n \in \{0, 1, 2, 4, 7, 9, 22\}$.
+Sun conjectured that the representation is unique ($a(n)=1$) if and only if $n \in \{0, 1, 2, 4, 7, 9, 22\}$.
 
-### Algebraic Transformation to Ternary Quadratic Forms
-Multiplying the terms by their corresponding denominators:
-- $8 T_x = 4x^2 + 4x = (2x+1)^2 - 1$
-- $24 P_y = 36y^2 + 12y = (6y+1)^2 - 1$
-- $40 H_z = 100z^2 + 20z = (10z+1)^2 - 1$
-
-Scaling by $\text{lcm}(8, 24, 40) = 120$:
-$$15(8 T_x) + 5(24 P_y) + 3(40 H_z) = 120 n$$
-$$15((2x+1)^2 - 1) + 5((6y+1)^2 - 1) + 3((10z+1)^2 - 1) = 120 n$$
+### Algebraic Transformation to Ternary Form
+Multiplying by $\text{lcm}(8, 24, 40) = 120$:
 $$15(2x+1)^2 + 5(6y+1)^2 + 3(10z+1)^2 = 120 n + 23$$
-
-Setting $u = 2x+1$, $v = 6y+1$, $w = 10z+1$, the problem is equivalent to finding positive integer solutions to:
+Setting $u = 2x+1, v = 6y+1, w = 10z+1$, this is equivalent to solving:
 $$15 u^2 + 5 v^2 + 3 w^2 = 120 n + 23$$
-subject to:
-$$u \equiv 1 \pmod 2, \quad v \equiv 1 \pmod 6, \quad w \equiv 1 \pmod{10}$$
+subject to $u \equiv 1 \pmod 2, v \equiv 1 \pmod 6, w \equiv 1 \pmod{10}$.
 
-### Local $p$-Adic Solvability Analysis
-1. **Modulo 3**:
-   $$5 v^2 \equiv 120 n + 23 \equiv 2 \pmod 3 \implies 2 v^2 \equiv 2 \pmod 3 \implies v^2 \equiv 1 \pmod 3$$
-   Since $v \equiv 1 \pmod 6 \implies v \equiv 1 \pmod 3$, this is identically satisfied.
-2. **Modulo 5**:
-   $$3 w^2 \equiv 120 n + 23 \equiv 3 \pmod 5 \implies w^2 \equiv 1 \pmod 5$$
-   Since $w \equiv 1 \pmod{10} \implies w \equiv 1 \pmod 5$, this is identically satisfied.
-3. **Modulo 8**:
-   $$15 u^2 + 5 v^2 + 3 w^2 \equiv 7(1) + 5(1) + 3(1) \equiv 15 \equiv 7 \pmod 8$$
-   And $120 n + 23 \equiv 23 \equiv 7 \pmod 8$.
-   This holds for all odd $u, v, w$.
-
-Hence, the quadratic form $Q(u, v, w) = 15 u^2 + 5 v^2 + 3 w^2$ has **no local $p$-adic obstructions** for representing $120n + 23$.
+### Local Modulo Compatibility
+- **Mod 3**: $5 v^2 \equiv 23 \equiv 2 \pmod 3 \implies v^2 \equiv 1 \pmod 3$. Satisfied since $v \equiv 1 \pmod 6$.
+- **Mod 5**: $3 w^2 \equiv 23 \equiv 3 \pmod 5 \implies w^2 \equiv 1 \pmod 5$. Satisfied since $w \equiv 1 \pmod{10}$.
+- **Mod 8**: $15(1) + 5(1) + 3(1) = 23 \equiv 7 \pmod 8$. Satisfied for all odd $u, v, w$.
 
 ---
 
-## 2. Multi-Color Non-Homogeneous Rado Numbers
+## 2. 2-4-6-8 Binomial Sums (OEIS A306477)
 
-### Theorem 1: $R_3(x + y + c = z) = 13c + 14$
-For every $c \ge 0$:
-1. **Lower bound**: An explicit 3-coloring of $\{1, \dots, 13c+13\}$ avoiding $x+y+c=z$ in all 3 colors.
-2. **Upper bound**: Every 3-coloring of $\{1, \dots, 13c+14\}$ forces a monochromatic triple.
+### Attribution
+Conjectured by **Prof. Zhi-Wei Sun** (2019).
 
-### Theorem 2: Parity Classification for $R(x+y=z, x+y+c=z)$
-$$R(x+y=z, x+y+c=z) = \begin{cases} \infty & \text{if } c \equiv 1 \pmod 2, \\ 2c + 4 & \text{if } c \equiv 0 \pmod 2.\end{cases}$$
-- **Proof for odd $c$**: Coloring odd integers $C_0$ (avoids $x+y=z$) and even integers $C_1$ (avoids $x+y+c=z$ since even $+$ even $+$ odd $=$ odd $\notin C_1$) yields an infinite valid partition.
+### Statement
+Every integer $n \ge 1$ can be expressed as:
+$$n = \binom{w+2}{2} + \binom{x+3}{4} + \binom{y+5}{6} + \binom{z+7}{8} \quad (w, x, y, z \ge 0)$$
+
+### Status
+This repository provides computational checking tools. The full theoretical proof for all $n \ge 1$ remains an **open problem**.
+
+---
+
+## 3. Conjectured 3-Color Rado Numbers ($x + y + c = z$)
+
+### Conjectured Formula
+$$R_3(x + y + c = z) = 13c + 14$$
+
+### Status
+Computationally verified for small constants $c \in \{0, 1, 2, 3\}$ using SAT solvers. A general combinatorial proof for all $c \ge 0$ is currently an open conjecture.

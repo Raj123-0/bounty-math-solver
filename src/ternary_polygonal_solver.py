@@ -1,23 +1,32 @@
 """
-Ternary Polygonal Number Solver & Verifier
-Addresses OEIS A287616 ($135 USD Bounty offered by Zhi-Wei Sun):
-Every natural number n >= 0 can be written as:
-    n = T_x + P_y + H_z
-where:
-    T_x = x(x + 1) / 2  (Triangular number, x >= 0)
-    P_y = y(3y + 1) / 2 (Pentagonal number, y >= 0)
-    H_z = z(5z + 1) / 2 (Heptagonal number, z >= 0)
+Ternary Polygonal Number Verification Tool
+Author: Raj123-0
+Description: Independent computational verification tool for Zhi-Wei Sun's
+             conjecture on mixed polygonal sums (OEIS A287616).
 
-And a(n) = 1 (unique representation) if and only if:
-    n in {0, 1, 2, 4, 7, 9, 22}
+Conjecture Reference:
+    Zhi-Wei Sun (2015, arXiv:1502.03056):
+    Every integer n >= 0 can be represented as:
+        n = T_x + P_y + H_z
+    where x, y, z in {0, 1, 2, ...} and:
+        T_x = x(x+1)/2  (Triangular number)
+        P_y = y(3y+1)/2 (Generalized Pentagonal number)
+        H_z = z(5z+1)/2 (Generalized Heptagonal number)
+
+Attribution & Disclaimer:
+    Credit for the theoretical formulation and conjecture belongs to Prof. Zhi-Wei Sun.
+    This module provides an independent computational implementation and empirical verification.
 """
 
 import numpy as np
 import time
+from typing import Dict, List, Tuple
 
-def compute_polygonal_representations(max_n=100000):
+def compute_polygonal_representations(max_n: int = 50000) -> Tuple[np.ndarray, List[int], List[int], float]:
     """
-    Computes the number of representations a(n) for all 0 <= n <= max_n.
+    Computes representation counts a(n) for all 0 <= n <= max_n.
+    Returns:
+        (counts_array, list_of_zeros, list_of_uniques, execution_time_seconds)
     """
     t0 = time.time()
     
@@ -49,9 +58,9 @@ def compute_polygonal_representations(max_n=100000):
     
     return counts, zeros, uniques, t1 - t0
 
-def find_specific_representation(n):
+def get_representation(n: int) -> List[Tuple[int, int, int]]:
     """
-    Finds all triples (x, y, z) >= 0 such that n = T_x + P_y + H_z.
+    Finds all non-negative integer triples (x, y, z) such that n = T_x + P_y + H_z.
     """
     solutions = []
     z_max = int((2 * n / 5)**0.5) + 2
@@ -74,11 +83,11 @@ def find_specific_representation(n):
     return solutions
 
 if __name__ == '__main__':
-    print("Testing Triangular + Pentagonal + Heptagonal Solver...")
+    print("=== OEIS A287616 Polygonal Sum Verification ===")
     counts, zeros, uniques, duration = compute_polygonal_representations(50000)
-    print(f"Computed representations up to 50,000 in {duration:.3f}s.")
-    print(f"Zeros found: {zeros}")
+    print(f"Verified range: 0 .. 50,000 in {duration:.3f}s")
+    print(f"Zeros (unrepresentable numbers): {zeros}")
     print(f"Unique representation values (a(n)=1): {uniques}")
-    assert zeros == [], "Found unrepresentable numbers!"
-    assert uniques == [0, 1, 2, 4, 7, 9, 22], f"Unique values {uniques} do not match conjecture!"
-    print("Verification SUCCESSFUL!")
+    assert zeros == [], "Unexpected zeros found!"
+    assert uniques == [0, 1, 2, 4, 7, 9, 22], f"Unique values {uniques} mismatch!"
+    print("Verification SUCCESSFUL.")

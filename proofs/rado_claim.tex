@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{Notes on Non-Homogeneous 3-Color Rado Numbers for $x + y + c = z$}
+\author{Raj123-0}
+\date{\today}
+
+% Note: Derivation incomplete; currently a conjecture awaiting full combinatorial proof.
+% Independent implementation and numerical exploration by Raj123-0.
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document records algebraic derivations and empirical SAT-based observations regarding the 3-color Rado numbers for the family of non-homogeneous linear equations $x + y + c = z$, where $c \ge 0$ is a non-negative integer parameter.
+\end{abstract}
+
+\section{Conjectured Linear Formula}
+
+Let $R_3(x + y + c = z)$ denote the smallest integer $N$ such that every 3-coloring of $\{1, 2, \dots, N\}$ contains a monochromatic solution to $x + y + c = z$.
+
+\paragraph{Empirical Observation / Conjecture:}
+For every integer $c \ge 0$,
+\begin{equation}
+    R_3(x + y + c = z) = 13c + 14.
+\end{equation}
+
+\section{Verified Base Instances}
+
+Using exhaustive propositional satisfiability (SAT) checks with symmetry breaking, the exact transition from satisfiable 3-colorings of $\{1, \dots, 13c+13\}$ to unsatisfiable instances on $\{1, \dots, 13c+14\}$ has been computationally verified for small values:
+\begin{itemize}
+    \item For $c = 0$ (Classical Schur number $S(3)$): $R_3(x + y = z) = 14$.
+    \item For $c = 1$: $R_3(x + y + 1 = z) = 27$.
+    \item For $c = 2$: $R_3(x + y + 2 = z) = 40$.
+    \item For $c = 3$: $R_3(x + y + 3 = z) = 53$.
+\end{itemize}
+
+\section{Status \& Open Question}
+
+% Derivation incomplete; currently a conjecture awaiting full combinatorial proof.
+While the lower-bound partitions can be constructed by interval scaling for small $c$, a formal inductive proof guaranteeing that $13c+14$ forces a monochromatic triple for all $c \in \mathbb{N}$ remains an open conjecture.
+
+\end{document}

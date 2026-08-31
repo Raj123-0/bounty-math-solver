@@ -1,35 +1,42 @@
 """
-Ternary Quadratic Form Algebraic & Local-Global Analysis
-Analyzes the equivalence:
+Ternary Quadratic Form Congruence & Representation Explorer
+Author: Raj123-0
+Description: Analyzes the algebraic reduction:
     n = T_x + P_y + H_z  <===>  15 u^2 + 5 v^2 + 3 w^2 = 120 n + 23
 where:
     u = 2x + 1  (u > 0, u = 1 mod 2)
     v = 6y + 1  (v > 0, v = 1 mod 6)
     w = 10z + 1 (w > 0, w = 1 mod 10)
+
+Disclaimer:
+    This file explores the local modular compatibility of the ternary form.
 """
 
-def verify_local_congruences(n):
+from typing import List, Tuple
+
+def verify_local_congruences(n: int) -> bool:
     """
-    Verifies that target = 120n + 23 is locally represented by 15u^2 + 5v^2 + 3w^2
-    modulo 2, 3, 5, 8, 24, 120.
+    Checks congruence consistency modulo 3, 5, and 8 for target = 120n + 23.
     """
     target = 120 * n + 23
     
-    # Modulo 3: 5 v^2 = 23 = 2 mod 3 ==> 2 v^2 = 2 mod 3 ==> v^2 = 1 mod 3
-    assert target % 3 == (5 * (1**2)) % 3, "Failed mod 3 congruence!"
-    
-    # Modulo 5: 3 w^2 = 23 = 3 mod 5 ==> w^2 = 1 mod 5
-    assert target % 5 == (3 * (1**2)) % 5, "Failed mod 5 congruence!"
-    
+    # Modulo 3: 5*1^2 = 2 = 23 mod 3
+    if target % 3 != (5 * (1**2)) % 3:
+        return False
+    # Modulo 5: 3*1^2 = 3 = 23 mod 5
+    if target % 5 != (3 * (1**2)) % 5:
+        return False
     # Modulo 8: 15(1) + 5(1) + 3(1) = 23 = 7 mod 8
-    assert target % 8 == (15 + 5 + 3) % 8, "Failed mod 8 congruence!"
-    
+    if target % 8 != (15 + 5 + 3) % 8:
+        return False
+        
     return True
 
-def solve_ternary_form(n):
+def solve_ternary_form(n: int) -> List[Tuple[int, int, int]]:
     """
-    Finds integer solutions (u, v, w) to 15u^2 + 5v^2 + 3w^2 = 120n + 23
-    satisfying u = 1 mod 2, v = 1 mod 6, w = 1 mod 10 with u, v, w > 0.
+    Finds positive integer solutions (u, v, w) satisfying:
+        15 u^2 + 5 v^2 + 3 w^2 = 120 n + 23
+    with u = 1 mod 2, v = 1 mod 6, w = 1 mod 10.
     """
     target = 120 * n + 23
     solutions = []
@@ -52,9 +59,9 @@ def solve_ternary_form(n):
     return solutions
 
 if __name__ == '__main__':
-    print("Verifying Local Congruences and Form Representation...")
-    for n in range(100):
-        assert verify_local_congruences(n)
+    print("Testing modular compatibility and representation for n in 0..100...")
+    for n in range(101):
+        assert verify_local_congruences(n), f"Congruence failed at n={n}"
         sols = solve_ternary_form(n)
-        assert len(sols) > 0, f"No solution for n={n}!"
-    print("Local-Global Verification PASSED for all n in 0..100!")
+        assert len(sols) > 0, f"No solution found at n={n}"
+    print("Local congruence checks and representations verified for 0..100.")
