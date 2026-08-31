@@ -31,7 +31,7 @@
   width: 100%
 )[
   #text(size: 8pt)[
-    *Academic Integrity & Formal Audit Statement:* This document is an audited technical report investigating Zhi-Wei Sun's 2-4-6-8 binomial representation conjecture (OEIS A306477). The theoretical architecture, circle method framework, 7 obstruction analyses, and major-arc heuristic formulations are credited to research preprints published by *Scott Sun* (July 23, 2026). This audit incorporates step-by-step mathematical re-derivations, rectifies a $1244times$ normalization discrepancy in the singular integral constant ($c_J = 25.323984$ vs. earlier $0.02035$), provides independent 3D adaptive numerical quadrature verification ($< 2 times 10^(-7)$ relative error), computes $p$-adic local density distributions via discrete FFT convolution, replaces single-point empirical comparisons with windowed statistical averages ($N=100$ to $75,000$), and corrects historical citation errors (e.g. distinguishing Zhi-Wei Sun's representation problem in OEIS A306477 from unrelated papers). The main conjecture remains OPEN.
+    *Author Attribution & Editor's Note:* _This document compiles and extends the research originally presented by Scott Sun in his Zenodo preprints (2026) [1,2]._ This audited edition establishes exact mathematical bounds, rectifies an arithmetic normalization in the singular integral constant ($c_J = 25.323984$ vs. preliminary $0.02035$), validates the integral against independent 3D numerical quadrature, computes $p$-adic local density distributions via discrete FFT convolution, and provides windowed statistical verification against OEIS A306477 counts up to $N = 75,000$. The main conjecture remains OPEN.
   ]
 ]
 
@@ -49,7 +49,7 @@
   $ J(n) = c_J n^(1/24), quad c_J = (Gamma(1/2) Gamma(1/4) Gamma(1/6) Gamma(1/8)) / (Gamma(25/24)) product_(k in {2,4,6,8}) (k!)^(1/k)/k approx 25.323984, $
   which is independently validated against direct 3D adaptive numerical quadrature (relative error $< 2 times 10^(-7)$). A conditional reduction theorem is proven: if the minor arc estimate $integral_frak(m) |f_2 f_4 f_6 f_8| dif alpha << N^(1/24 - eta)$ holds for some $eta > 0$, then Sun's conjecture follows for all sufficiently large $n$.
 
-  Conversely, a comprehensive obstruction analysis demonstrates why seven standard analytic techniques fail by exponent deficits ranging from $0.3958$ to $0.7292$. The critical dimension $sum_(k in {2,4,6,8}) 1/k = 25/24$ barely exceeds 1, causing all known methods to fall short. Windowed statistical averages against OEIS A306477 counts up to $N = 75,000$ show that the empirical ratio $overline(r) / overline(frak(S) J)$ drifts from $0.72$ to $1.33$ (a $approx 1.85times$ spread), indicating missing lower-order polynomial terms. The main conjecture remains open.
+  Conversely, a comprehensive obstruction analysis demonstrates why seven standard analytic techniques fail by exponent deficits ranging from $0.3958$ to $0.7292$. The critical dimension $sum_(k in {2,4,6,8}) 1/k = 25/24$ barely exceeds 1, causing all known methods to fall short. Windowed statistical averages against OEIS A306477 counts up to $N = 75,000$ show that the empirical ratio $overline(r) / overline(frak(S) J)$ drifts from $0.72$ to $1.33$ (a $approx 1.85times$ spread), indicating missing lower-order polynomial terms. Complete Python verification code and terminal outputs are provided in Appendices A--C. The main conjecture remains open.
 ]
 
 #v(0.3em)
@@ -122,12 +122,13 @@ _where $c_J approx 25.323984$._
   fill: (x, y) => if y == 0 { rgb("f1f5f9") } else { none },
   stroke: 0.5pt + rgb("cbd5e1"),
   align: (center, center, center, center),
-  [$n$], [Direct Numerical $J_"num"(n)$], [Analytical $c_J n^(1/24)$], [Relative Diff],
+  [$n$], [Direct Numerical $J_"num"(n)$], [Analytical $c_J n^(1/24)$], [Relative Difference],
   [$10$], [$27.873956$], [$27.873962$], [$1.98 times 10^(-7)$],
   [$50$], [$29.807288$], [$29.807287$], [$3.89 times 10^(-8)$],
   [$100$], [$30.680708$], [$30.680707$], [$1.15 times 10^(-8)$],
 )
 ]
+#align(center)[#text(size: 7.5pt, fill: rgb("666666"))[_Table 1: Independent 3D Numerical Quadrature vs. Analytical Formula $c_J n^(1/24)$ (Data generated via adaptive numerical integration in Python; theoretical formula from Scott Sun (2026) with corrected normalization)._]]
 
 == Rigorous Computation of Local Densities
 For each prime $p$ and integer $k >= 1$, define $M(p^k, n) = |{ (w, x, y, z) mod p^k : P_2(w) + P_4(x) + P_6(y) + P_8(z) equiv n mod p^k }|$ and the $p$-adic local density $chi_p(n) = lim_(k -> infinity) p^(-3k) M(p^k, n)$.
@@ -141,12 +142,13 @@ _For all $n >= 1$, $chi_2(n) = 1.000000$ identically, because $2 P_2'(w) = 2w + 
   fill: (x, y) => if y == 0 { rgb("f1f5f9") } else { none },
   stroke: 0.5pt + rgb("cbd5e1"),
   align: (center, center, center, center, left),
-  [Prime $p$], [Period Modulo], [Min $chi_p(n)$], [Max $chi_p(n)$], [Characteristics],
-  [$3$], [$9$], [$0.765432$], [$1.111111$], [Min at $n equiv 5 mod 9$; mean $= 1.0$],
-  [$5$], [$25$], [$0.889600$], [$1.120000$], [Min at $n equiv 19 mod 25$; mean $= 1.0$],
-  [$7$], [$49$], [$0.903790$], [$1.131195$], [Min at $n equiv 19,33,40 mod 49$],
+  [Prime $p$], [Period Modulo], [Minimum $chi_p(n)$], [Maximum $chi_p(n)$], [Distribution Characteristics],
+  [$3$], [$9$], [$0.765432$], [$1.111111$], [Minimum at $n equiv 5 mod 9$; mean $= 1.0$],
+  [$5$], [$25$], [$0.889600$], [$1.120000$], [Minimum at $n equiv 19 mod 25$; mean $= 1.0$],
+  [$7$], [$49$], [$0.903790$], [$1.131195$], [Minimum at $n equiv 19,33,40 mod 49$],
 )
 ]
+#align(center)[#text(size: 7.5pt, fill: rgb("666666"))[_Table 2: Small Prime Local Densities (Numerically determined via discrete FFT convolution on $ZZ / p^2 ZZ$; methodology adapted from Scott Sun (2026))._]]
 
 *Theorem 3.4 (Weil Bound for $p > 7$).*
 _For all primes $p > 7$, $|chi_p(n) - 1| <= 105 / p^2$. Consequently, $frak(S)(n) >= c_0 approx 0.1218 > 0$._
@@ -176,6 +178,7 @@ _Then under standard major arc asymptotics, Sun's conjecture holds for all suffi
   [7. Igusa $p$-Adic Zeta], [$"lct" = 1 ==> p^(-1)$], [Diverges], [N/A],
 )
 ]
+#align(center)[#text(size: 7.5pt, fill: rgb("666666"))[_Table 3: Summary of Obstruction Exponents and Deficits over the Target $N^(1/24)$ (Analytical derivations from Scott Sun (2026), re-tabulated with exact fractional and decimal deficits)._]]
 
 = Numerical Verification and Honest Statistical Analysis
 
@@ -195,6 +198,7 @@ _Then under standard major arc asymptotics, Sun's conjecture holds for all suffi
   [$[50000, 75000]$], [5001], [29.27], [9.18], [22.23], [6.39], [1.3164],
 )
 ]
+#align(center)[#text(size: 7.5pt, fill: rgb("666666"))[_Table 4: Windowed Statistical Comparison: Empirical $r(n)$ vs. Leading Asymptotic $frak(S)(n) J(n)$ (Empirical counts from OEIS A306477; asymptotic model from Scott Sun (2026) with corrected $c_J$)._]]
 
 #block(
   fill: rgb("f8fafc"),
@@ -215,7 +219,7 @@ Sun's 2-4-6-8 conjecture is conditionally established modulo the Joint Minor Arc
 1. *Sub-$p^(-1)$ Cohomological Cancellation:* $|A(p, n)| <= C p^(-1 - delta)$ for some $delta > 0$.
 2. *1D Mixed Curve Decoupling:* $integral_frak(m) |f_2 f_4 f_6 f_8| dif alpha <= C N^(1/24 - eta)$ for some $eta > 0$.
 
-#v(1em)
+#v(0.8em)
 #line(length: 100%, stroke: 0.5pt + rgb("cbd5e1"))
 #v(0.3em)
 
