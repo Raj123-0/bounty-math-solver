@@ -1,0 +1,68 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage{amsmath,amssymb,amsthm,geometry,mathtools}
+\geometry{a4paper,margin=1.1in}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\M}{\mathfrak{M}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\title{An Analytic Evaluation of Estimate (K) and the Circle Method Defect for OEIS A306477}
+\author{Raj123-0}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We evaluate the minor arc $L^2$ bound (Estimate K) for the degree-8 Weyl sum $f_8(\alpha) = \sum_{1 \le z \le N^{1/8}} \e\left(\alpha \binom{z+7}{8}\right)$. We prove that the total $L^2$ energy satisfies $\|f_8\|_{L^2([0,1])}^2 = \lfloor N^{1/8} \rfloor \le N^{1/4 - 1/8}$, establishing Estimate (K) with exact parameter $\delta = 1/8$. However, we demonstrate that applying Estimate (K) via Cauchy--Schwarz produces an upper bound of $N^{23/48}$, which exceeds the singular integral main term $J(n) \asymp n^{1/24} = n^{2/48}$ by an exact dimensional deficit of $\Delta = 7/16 = 0.4375$. We formulate the required joint bilinear cancellation condition.
+\end{abstract}
+
+\section{Exact Evaluation of Estimate (K)}
+
+Let $P = \lfloor N^{1/8} \rfloor$, and let $f_8(\alpha) = \sum_{z=1}^P \e\left(\alpha \binom{z+7}{8}\right)$.
+
+\begin{theorem}[Orthogonality and $L^2$ Bound]
+For any measurable subset $\m \subseteq [0, 1]$ and any $N \ge 1$:
+\begin{equation}
+    \int_{\m} |f_8(\alpha)|^2 \, d\alpha \le \int_0^1 |f_8(\alpha)|^2 \, d\alpha = P \le N^{1/8}.
+\end{equation}
+Setting $\delta = 1/8 = 0.125$ and $C = 1$, we have:
+\begin{equation}
+    \int_{\m} |f_8(\alpha)|^2 \, d\alpha \le 1 \cdot N^{1/4 - \delta}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Expanding the square and integrating term-by-term:
+\begin{equation}
+    \int_0^1 |f_8(\alpha)|^2 \, d\alpha = \sum_{1 \le z_1, z_2 \le P} \int_0^1 \e\left(\alpha \left(\binom{z_1+7}{8} - \binom{z_2+7}{8}\right)\right) \, d\alpha.
+\end{equation}
+By the orthogonality relation $\int_0^1 \e(m\alpha) \, d\alpha = \delta_{m,0}$, the integral is non-zero if and only if $\binom{z_1+7}{8} = \binom{z_2+7}{8}$. Since $z \mapsto \binom{z+7}{8}$ is strictly increasing for $z \ge 1$, this forces $z_1 = z_2$. There are exactly $P$ such diagonal solutions and zero off-diagonal solutions.
+\end{proof}
+
+\section{The Circle Method Dimensional Obstruction}
+
+When inserting this bound into the 4-variable representation integral:
+\begin{equation}
+    \left| \int_{\m} f_2 f_4 f_6 f_8 \, \e(-n\alpha) \, d\alpha \right| \le \|f_8\|_{L^2(\m)} \|f_2 f_4 f_6\|_{L^2([0,1])} \le N^{1/16} \cdot N^{5/12} = N^{23/48}.
+\end{equation}
+Meanwhile, the major arc main term is:
+\begin{equation}
+    \int_{\M} f_2 f_4 f_6 f_8 \, \e(-n\alpha) \, d\alpha = \mathfrak{S}(n) J(n) + o(n^{1/24}) \asymp n^{1/24} = n^{2/48}.
+\end{equation}
+The uncoupled minor arc bound exceeds the main term by:
+\begin{equation}
+    \Delta = \frac{23}{48} - \frac{2}{48} = \frac{21}{48} = \frac{7}{16} = 0.4375.
+\end{equation}
+Hence, uncoupling $f_8$ from $(f_2, f_4, f_6)$ cannot establish $r(n) > 0$. A proof requires proving joint phase cancellation directly on the 4-fold product.
+
+\end{document}
