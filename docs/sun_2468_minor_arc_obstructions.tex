@@ -219,7 +219,7 @@ c_J = \mathcal{G} \cdot \mathcal{C}_{\text{Jacobian}} = 275.666062 \times 0.0918
 In earlier preprints (such as Scott Sun \cite{scottsun2026v2}), the singular integral constant was reported as $c_J \approx 0.02035$. That preliminary figure contained an arithmetic mis-normalization: Euler's formula was evaluated with $\Gamma(1+1/k) = \frac{1}{k}\Gamma(1/k)$ rather than the fractional density $\tau^{1/k-1}$ integrating to $\Gamma(1/k)$, which erroneously divided the beta integral by $\prod k = 384$, in addition to inverting the factorial scaling factors. The corrected closed form $c_J = 25.323984$ is verified below against direct numerical quadrature.
 \end{remark}
 
-\subsubsection{Direct Numerical Quadrature Comparison}
+\subsubsection{Numerical Validation of $J(n)$}
 To verify $J(n)$ with zero closed-form assumptions, we evaluate the 3D integral directly using adaptive numerical quadrature (eliminating endpoint singularities via regularizing transformations $t_1=x^2, t_2=y^4, t_3=z^6$; see Python code in Appendix~\ref{app:quadrature}).
 
 \begin{table}[htbp]
@@ -430,7 +430,7 @@ Sun's 2-4-6-8 conjecture is conditionally established modulo the Joint Minor Arc
 \item \textbf{1D Mixed Curve Decoupling}: Prove there exists $\eta > 0$ such that $\int_{\mathfrak{m}} |f_2 f_4 f_6 f_8| d\alpha \ll N^{\frac{1}{24}-\eta}$.
 \end{enumerate}
 
-\paragraph{Editor's Note.} \emph{This document compiles and extends research originally presented by Scott Sun in his Zenodo preprints (2026) \cite{scottsun2026v2, scottsun2026v3}. Key updates include the analytical re-derivation and numerical quadrature validation of the singular integral constant $c_J = 25.323984$, exact 2-adic equidistribution proof $\chi_2(n)=1$, numerical determinations of $\chi_p(n)$ for $p=3,5,7$, resolution of variable typographical errors in Theorem 3.5 ($N^{\frac{1}{24}-\eta}$), standardization of notation ($\mathbb{Z}_2^\times$), and comprehensive windowed statistical verification ($N=100$ to $75{,}000$). Appendices containing code and extended data are provided below and in the original Zenodo preprints \cite{scottsun2026v2, scottsun2026v3}.}
+\paragraph{Editor's Note.} \emph{This revision corrects the exponent in Theorem 3.5 from $n$ to $\eta$, fixes algebraic errors in the obstruction table, standardizes 2-adic notation ($\mathbb{Z}_2^\times$), and removes duplicate sections. Appendices containing code and extended data are provided below and in the original Zenodo preprints \cite{scottsun2026v2, scottsun2026v3}.}
 
 \begin{thebibliography}{99}
 \bibitem{scottsun2026v2} S. Sun, \emph{A Computational and Analytic Investigation of Sun's (2-4-6-8) Binomial Representation Conjecture: Asymptotic Evidence, Local Theory, and Limitations}, Zenodo Preprint (Version V2.0, July 23, 2026).

@@ -116,6 +116,7 @@ _where $c_J approx 25.323984$._
   *Erratum & History of the Constant:* In earlier preprints (such as Scott Sun 2026), $c_J approx 0.02035$ was reported due to applying $Gamma(1+1/k) = 1/k Gamma(1/k)$ instead of $Gamma(1/k)$ and inverting coefficients. The correct constant $c_J = 25.323984$ was verified against independent 3D numerical quadrature (relative error $< 2 times 10^(-7)$; code in Appendix A).
 ]
 
+=== Numerical Validation of $J(n)$
 #align(center)[
 #table(
   columns: (2.5cm, 4.0cm, 4.0cm, 3.0cm),
@@ -152,6 +153,8 @@ _For all $n >= 1$, $chi_2(n) = 1.000000$ identically, because $2 P_2'(w) = 2w + 
 
 *Theorem 3.4 (Weil Bound for $p > 7$).*
 _For all primes $p > 7$, $|chi_p(n) - 1| <= 105 / p^2$. Consequently, $frak(S)(n) >= c_0 approx 0.1218 > 0$._
+
+== Conditional Reduction to the Minor Arc Estimate
 
 *Theorem 3.5 (Proven: Conditional Proof of Sun's Conjecture).*
 _Assume the *Joint Minor Arc Estimate (J)*: there exist constants $eta > 0$ and $C > 0$ such that:_
@@ -228,7 +231,7 @@ Sun's 2-4-6-8 conjecture is conditionally established modulo the Joint Minor Arc
   stroke: 0.5pt + rgb("cbd5e1"),
   width: 100%
 )[
-  *Editor's Note:* _This document compiles and extends research originally presented by Scott Sun in his Zenodo preprints (2026) [1,2]. Key updates include the analytical re-derivation and numerical quadrature validation of the singular integral constant $c_J = 25.323984$, exact 2-adic equidistribution proof $chi_2(n)=1$, numerical determinations of $chi_p(n)$ for $p=3,5,7$, resolution of variable typographical errors in Theorem 3.5 ($N^(1/24 - eta)$), standardization of notation ($ZZ_2^times$), and comprehensive windowed statistical verification ($N=100$ to $75,000$). Appendices containing code and extended data are available in the original Zenodo preprints [1,2] and the companion repository._
+  *Editor's Note:* _This revision corrects the exponent in Theorem 3.5 from $n$ to $eta$, fixes algebraic errors in the obstruction table, standardizes 2-adic notation ($ZZ_2^times$), and removes duplicate sections. Appendices containing code and extended data are available in the original Zenodo preprints [1,2] and the companion repository._
 ]
 
 #v(0.5em)
