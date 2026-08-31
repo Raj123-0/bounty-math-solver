@@ -6,6 +6,7 @@
 This repository provides independent computational verifiers, algebraic reductions, formal LaTeX proofs, Lean 4 formalization, and circle method analytical reports for open conjectures in number theory and combinatorics.
 
 ## Key Files & Modules
+- [docs/sun_2468_minor_arc_obstructions.tex](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/docs/sun_2468_minor_arc_obstructions.tex): Full research paper on the circle method conditional proof and the seven minor arc obstructions for Sun's 2-4-6-8 conjecture.
 - [README.md](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/README.md): Project overview, scope disclaimer, and usage guide.
 - [llms-full.txt](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/llms-full.txt): Complete consolidated repository content in a single file for full context ingestion.
 - [lean/A306477_MinorArc.lean](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/lean/A306477_MinorArc.lean): Lean 4 formalization of Weyl sums and minor arc estimates.
