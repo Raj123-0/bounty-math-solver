@@ -74,6 +74,17 @@ python -m unittest discover tests
 
 ---
 
+---
+
+## AI & LLM Ingestion (Claude, DeepSeek, ChatGPT)
+
+This repository provides standardized [llmstxt.org](https://llmstxt.org) endpoint files for direct consumption by AI assistants:
+
+- **[llms.txt](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/llms.txt)**: Structured markdown index of modules, theorems, and verification commands.
+- **[llms-full.txt](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/llms-full.txt)**: Full consolidated single-file bundle containing all source code, mathematical proofs, and test suites.
+
+---
+
 ## Author & Attribution
 - **Author**: Raj123-0
 - **License**: MIT

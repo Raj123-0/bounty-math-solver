@@ -1,0 +1,31 @@
+# Bounty Math Solver - LLM Index
+
+> Computational verification toolkit and mathematical analysis for integer sequence conjectures, mixed polygonal sums, and arithmetic Ramsey theory problems by Raj123-0.
+
+## Overview
+This repository provides independent computational verifiers, algebraic reductions, and formal LaTeX proofs for open conjectures in number theory and combinatorics.
+
+## Key Files & Modules
+- [README.md](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/README.md): Project overview, scope disclaimer, and usage guide.
+- [llms-full.txt](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/llms-full.txt): Complete consolidated repository content in a single file for full context ingestion.
+- [docs/mathematical_proofs.md](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/docs/mathematical_proofs.md): Full mathematical proofs and structural reductions.
+- [proofs/rado_claim.tex](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/proofs/rado_claim.tex): LaTeX document containing formal proofs for off-diagonal Rado parity theorems.
+- [src/a306477_checker.py](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/src/a306477_checker.py): Exact integer binomial coefficient solver and decomposition engine for OEIS A306477.
+- [src/ternary_polygonal_solver.py](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/src/ternary_polygonal_solver.py): Mixed polygonal number verifier (triangular + pentagonal + heptagonal) for OEIS A287616.
+- [src/quadratic_form_local_global.py](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/src/quadratic_form_local_global.py): Local p-adic congruence explorer for the ternary form 15u^2 + 5v^2 + 3w^2 = 120n + 23.
+- [src/rado_checker.py](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/src/rado_checker.py): SAT-based verification engine for non-homogeneous Rado numbers.
+- [tests/test_binomial.py](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/tests/test_binomial.py): Unit test suite for A306477 checker.
+- [tests/test_all_verifications.py](https://raw.githubusercontent.com/Raj123-0/bounty-math-solver/master/tests/test_all_verifications.py): Full test suite covering all modules.
+
+## Main Mathematical Results & Status
+1. **Off-Diagonal Rado Parity Theorem (PROVED)**:
+   - For all odd c >= 1: R(x+y=z, x+y+c=z) = infinity. (Proof via parity partition C0=odd, C1=even).
+   - For all even c >= 2: R(x+y=z, x+y+c=z) >= 2c + 4. (Proof via interval partition C1=[1, c+1], C0=[c+2, 2c+3]).
+   - For all odd c and k >= 2: R(x+y=z, ..., x+y=z [k-1 times], x+y+c=z) = infinity.
+2. **2-4-6-8 Binomial Sum (OEIS A306477 - OPEN)**:
+   - n = C(w+2,2) + C(x+3,4) + C(y+5,6) + C(z+7,8).
+   - Computationally verified for all n <= 100,000. Full proof remains open.
+3. **Mixed Polygonal Sums (OEIS A287616 - PROVED by Cao et al. 2026)**:
+   - n = x(x+1)/2 + y(3y+1)/2 + z(5z+1)/2.
+   - Reduced to 15u^2 + 5v^2 + 3w^2 = 120n + 23 with zero local p-adic obstructions.
+   - Full proof established by Cao, Guo, Qiu, Feng, Gao (arXiv:2606.26035, 2026).
