@@ -272,7 +272,7 @@ Sun's 2-4-6-8 conjecture is conditionally established modulo the Joint Minor Arc
 
 #pagebreak()
 
-#heading(numbering: none)[Appendix A:] Python Code: Direct Numerical Quadrature of $J(n)$
+#heading(numbering: none)[Appendix A: Python Code: Direct Numerical Quadrature of $J(n)$]
 
 ```python
 import math
@@ -319,7 +319,7 @@ n= 50: numeric=29.807288, theoretical=29.807287, rel diff=3.89e-08
 n=100: numeric=30.680708, theoretical=30.680707, rel diff=1.15e-08
 ```
 
-#heading(numbering: none)[Appendix B:] Python Code: Small Prime Local Density Engine
+#heading(numbering: none)[Appendix B: Python Code: Small Prime Local Density Engine]
 
 ```python
 import numpy as np
@@ -357,7 +357,7 @@ p=5, mod 25: min=0.889600, max=1.120000, mean=1.000000
 p=7, mod 49: min=0.903790, max=1.131195, mean=1.000000
 ```
 
-#heading(numbering: none)[Appendix C:] Python Code: Windowed Statistical Verification
+#heading(numbering: none)[Appendix C: Python Code: Windowed Statistical Verification]
 
 ```python
 import numpy as np
