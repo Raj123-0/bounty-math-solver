@@ -139,8 +139,6 @@ On the major arcs, $\alpha = a/q + \beta$ with $|\beta| \leq 1/(q N^{1-\theta})$
 v_k(\beta) = \int_0^{(k! N)^{1/k}} e\!\left(\beta \frac{t^k}{k!}\right) dt.
 \end{equation}
 
-\subsubsection{Fourier Inversion and Fractional Density}
-
 \begin{lemma}[Inverse Fourier Transform of $v_k$]\label{lem:ft_vk}
 For each $k \in \{2,4,6,8\}$ and $\tau \in [0, N]$, the inverse Fourier transform of $v_k(\beta)$ is the fractional power density
 \begin{equation}
@@ -167,8 +165,6 @@ By the Fourier inversion formula on the Schwartz space / distributions, $\int_{-
 \]
 which completes the derivation.
 \end{proof}
-
-\subsubsection{4-Fold Convolution and the Dirichlet--Liouville Integral}
 
 \begin{theorem}[Proven: Continuous Singular Integral]\label{thm:singular_integral}
 The continuous singular integral
@@ -427,10 +423,10 @@ As shown in Table~\ref{tab:windowed}:
 Sun's 2-4-6-8 conjecture is conditionally established modulo the Joint Minor Arc Estimate (J). To establish the conjecture unconditionally, research must focus on one of two open conjectures:
 \begin{enumerate}
 \item \textbf{Sub-$p^{-1}$ Cohomological Cancellation}: Prove there exists $\delta > 0$ such that $|A(p,n)| \ll p^{-1-\delta}$.
-\item \textbf{1D Mixed Curve Decoupling}: Prove there exists $\eta > 0$ such that $\int_{\mathfrak{m}} |f_2 f_4 f_6 f_8| d\alpha \ll N^{\frac{1}{24}-\eta}$.
+\item \textbf{1D Mixed Curve Decoupling}: Prove there exists $\eta > 0$ such that $\int_{\mathfrak{m}} |f_2(\alpha) f_4(\alpha) f_6(\alpha) f_8(\alpha)|\,d\alpha \leq C \cdot N^{\frac{1}{24}-\eta}$.
 \end{enumerate}
 
-\paragraph{Editor's Note.} \emph{This revision corrects the exponent in Theorem 3.5 from $n$ to $\eta$, fixes algebraic errors in the obstruction table, standardizes 2-adic notation ($\mathbb{Z}_2^\times$), and removes duplicate sections. Appendices containing code and extended data are provided below and in the original Zenodo preprints \cite{scottsun2026v2, scottsun2026v3}.}
+\paragraph{Editor's Note.} \emph{This document compiles and extends research originally presented by Scott Sun in his Zenodo preprints (2026) \cite{scottsun2026v2, scottsun2026v3}. This revision corrects the exponent in Theorem 3.5 and Section 6 from $n$ to $\eta$, fixes algebraic errors in the obstruction table, standardizes 2-adic notation to $\mathbb{Z}_2^\times$, merges duplicate sections, and clarifies table captions. Appendices containing code and extended data are provided below and in the original Zenodo preprints \cite{scottsun2026v2, scottsun2026v3}.}
 
 \begin{thebibliography}{99}
 \bibitem{scottsun2026v2} S. Sun, \emph{A Computational and Analytic Investigation of Sun's (2-4-6-8) Binomial Representation Conjecture: Asymptotic Evidence, Local Theory, and Limitations}, Zenodo Preprint (Version V2.0, July 23, 2026).

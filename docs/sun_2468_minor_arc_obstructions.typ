@@ -220,7 +220,7 @@ _Then under standard major arc asymptotics, Sun's conjecture holds for all suffi
 
 Sun's 2-4-6-8 conjecture is conditionally established modulo the Joint Minor Arc Estimate (J). To establish the conjecture unconditionally, research must focus on either:
 1. *Sub-$p^(-1)$ Cohomological Cancellation:* $|A(p, n)| <= C p^(-1 - delta)$ for some $delta > 0$.
-2. *1D Mixed Curve Decoupling:* $integral_frak(m) |f_2 f_4 f_6 f_8| dif alpha <= C N^(1/24 - eta)$ for some $eta > 0$.
+2. *1D Mixed Curve Decoupling:* $integral_frak(m) |f_2(alpha) f_4(alpha) f_6(alpha) f_8(alpha)| dif alpha <= C N^(1/24 - eta)$ for some $eta > 0$.
 
 #v(0.5em)
 
@@ -231,7 +231,7 @@ Sun's 2-4-6-8 conjecture is conditionally established modulo the Joint Minor Arc
   stroke: 0.5pt + rgb("cbd5e1"),
   width: 100%
 )[
-  *Editor's Note:* _This revision corrects the exponent in Theorem 3.5 from $n$ to $eta$, fixes algebraic errors in the obstruction table, standardizes 2-adic notation ($ZZ_2^times$), and removes duplicate sections. Appendices containing code and extended data are available in the original Zenodo preprints [1,2] and the companion repository._
+  *Editor's Note:* _This document compiles and extends research originally presented by Scott Sun in his Zenodo preprints (2026) [1,2]. This revision corrects the exponent in Theorem 3.5 and Section 6 from $n$ to $eta$, fixes algebraic errors in the obstruction table, standardizes 2-adic notation to $ZZ_2^times$, merges duplicate sections, and clarifies table captions. Appendices containing code and extended data are available in the original Zenodo preprints [1,2] and the companion repository._
 ]
 
 #v(0.5em)
