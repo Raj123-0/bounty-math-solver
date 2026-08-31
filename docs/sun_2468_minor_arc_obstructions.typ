@@ -30,8 +30,8 @@
   stroke: 0.5pt + rgb("fef3c7"),
   width: 100%
 )[
-  #text(size: 8pt)[
-    *Author Attribution & Editor's Note:* _This document compiles and extends the research originally presented by Scott Sun in his Zenodo preprints (2026) [1,2]._ This audited edition establishes exact mathematical bounds, rectifies an arithmetic normalization in the singular integral constant ($c_J = 25.323984$ vs. preliminary $0.02035$), validates the integral against independent 3D numerical quadrature, computes $p$-adic local density distributions via discrete FFT convolution, and provides windowed statistical verification against OEIS A306477 counts up to $N = 75,000$. The main conjecture remains OPEN.
+  #text(size: 8.5pt)[
+    *Credit Line:* _This report compiles and extends research originally presented by Scott Sun in his Zenodo preprints (2026) [1,2]._
   ]
 ]
 
@@ -122,7 +122,7 @@ _where $c_J approx 25.323984$._
   fill: (x, y) => if y == 0 { rgb("f1f5f9") } else { none },
   stroke: 0.5pt + rgb("cbd5e1"),
   align: (center, center, center, center),
-  [$n$], [Direct Numerical $J_"num"(n)$], [Analytical $c_J n^(1/24)$], [Relative Difference],
+  [$n$], [Direct Numerical $J_"num"(n)$], [Analytical Formula $c_J n^(1/24)$], [Relative Difference],
   [$10$], [$27.873956$], [$27.873962$], [$1.98 times 10^(-7)$],
   [$50$], [$29.807288$], [$29.807287$], [$3.89 times 10^(-8)$],
   [$100$], [$30.680708$], [$30.680707$], [$1.15 times 10^(-8)$],
@@ -142,7 +142,7 @@ _For all $n >= 1$, $chi_2(n) = 1.000000$ identically, because $2 P_2'(w) = 2w + 
   fill: (x, y) => if y == 0 { rgb("f1f5f9") } else { none },
   stroke: 0.5pt + rgb("cbd5e1"),
   align: (center, center, center, center, left),
-  [Prime $p$], [Period Modulo], [Minimum $chi_p(n)$], [Maximum $chi_p(n)$], [Distribution Characteristics],
+  [Prime $p$], [Period Modulo], [Min $chi_p(n)$], [Max $chi_p(n)$], [Characteristics],
   [$3$], [$9$], [$0.765432$], [$1.111111$], [Minimum at $n equiv 5 mod 9$; mean $= 1.0$],
   [$5$], [$25$], [$0.889600$], [$1.120000$], [Minimum at $n equiv 19 mod 25$; mean $= 1.0$],
   [$7$], [$49$], [$0.903790$], [$1.131195$], [Minimum at $n equiv 19,33,40 mod 49$],
@@ -166,7 +166,7 @@ _Then under standard major arc asymptotics, Sun's conjecture holds for all suffi
   fill: (x, y) => if y == 0 { rgb("f1f5f9") } else if y == 1 { rgb("ecfdf5") } else { none },
   stroke: 0.5pt + rgb("cbd5e1"),
   align: (left, left, center, center),
-  [*Method*], [*Analytical Exponent*], [*Numerical*], [*Deficit $Delta$*],
+  [*Method*], [*Analytical Exponent*], [*Numerical Exponent*], [*Exponent Deficit $Delta$*],
   [*Target Main Term*], [$N^(1/24)$], [*+0.0417*], [*0.0000*],
   [1. Cauchy (Heuristic)], [$N^(1/16) N^(5/12) = N^(23/48)$], [+0.4792], [+0.4375],
   [1'. Cauchy (Rigorous)], [$N^(1/16) N^(17/24) = N^(37/48)$], [+0.7708], [+0.7292],
@@ -219,7 +219,19 @@ Sun's 2-4-6-8 conjecture is conditionally established modulo the Joint Minor Arc
 1. *Sub-$p^(-1)$ Cohomological Cancellation:* $|A(p, n)| <= C p^(-1 - delta)$ for some $delta > 0$.
 2. *1D Mixed Curve Decoupling:* $integral_frak(m) |f_2 f_4 f_6 f_8| dif alpha <= C N^(1/24 - eta)$ for some $eta > 0$.
 
-#v(0.8em)
+#v(0.5em)
+
+#block(
+  fill: rgb("f1f5f9"),
+  inset: 7pt,
+  radius: 3pt,
+  stroke: 0.5pt + rgb("cbd5e1"),
+  width: 100%
+)[
+  *Editor's Note:* _This document compiles and extends research originally presented by Scott Sun in his Zenodo preprints (2026) [1,2]. Key updates include the analytical re-derivation and numerical quadrature validation of the singular integral constant $c_J = 25.323984$, exact 2-adic equidistribution proof $chi_2(n)=1$, numerical determinations of $chi_p(n)$ for $p=3,5,7$, resolution of variable typographical errors in Theorem 3.5 ($N^(1/24 - eta)$), standardization of notation ($ZZ_2^times$), and comprehensive windowed statistical verification ($N=100$ to $75,000$). Appendices containing code and extended data are available in the original Zenodo preprints [1,2] and the companion repository._
+]
+
+#v(0.5em)
 #line(length: 100%, stroke: 0.5pt + rgb("cbd5e1"))
 #v(0.3em)
 
