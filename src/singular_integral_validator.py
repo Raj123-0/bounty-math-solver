@@ -5,6 +5,8 @@ Description:
 1. Derives and validates the singular integral constant c_J analytically and via direct 3D numerical quadrature.
 2. Computes windowed statistical averages of r(n) vs S(n)*J(n) across scales N = 100 to 75,000.
 """
+from __future__ import annotations
+
 
 import math
 import numpy as np
@@ -17,6 +19,7 @@ except ImportError:
     from a306477_checker import count_representations
     from local_density_calculator import compute_local_density_table, compute_singular_series
 
+
 def get_analytical_c_J() -> float:
     """Computes c_J analytically from the Dirichlet-Liouville beta integral."""
     g1_2 = math.gamma(0.5)
@@ -28,6 +31,7 @@ def get_analytical_c_J() -> float:
     coeff_factor = (2**0.5 / 2.0) * (24**0.25 / 4.0) * (720**(1/6) / 6.0) * (40320**0.125 / 8.0)
     return gamma_factor * coeff_factor
 
+
 def numerical_quadrature_J(n: float) -> float:
     """Computes J(n) via direct 3D numerical quadrature with regularized coordinate transformation."""
     c2 = 2**0.5 / 2.0
@@ -35,13 +39,44 @@ def numerical_quadrature_J(n: float) -> float:
     c6 = 720**(1/6) / 6.0
     c8 = 40320**0.125 / 8.0
     
-    def reg_integrand(z, y, x):
+    def reg_integrand(z, y, x) -> float:
+        """Reg integrand.
+        
+        Args:
+            z:
+            y:
+            x:
+        
+        Returns:
+            float: Result of type float
+        
+        """
         rem = n - x**2 - y**4 - z**6
-        if rem <= 1e-12: return 0.0
+        if rem <= 1e-12:
+            return 0.0
         return 2.0 * 4.0 * 6.0 * (rem**(-7/8))
     
     x_max = n**0.5
+    """Y max.
+    
+    Args:
+        x:
+    
+    Returns:
+        The computed result
+    
+    """
     def y_max(x): return max(0.0, n - x**2)**0.25
+    """Z max.
+    
+    Args:
+        x:
+        y:
+    
+    Returns:
+        The computed result
+    
+    """
     def z_max(x, y): return max(0.0, n - x**2 - y**4)**(1/6)
     
     val, _ = integrate.tplquad(
