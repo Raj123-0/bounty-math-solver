@@ -18,9 +18,11 @@ Attribution & Disclaimer:
     This module provides an independent computational implementation and empirical verification.
 """
 
-import numpy as np
-import time
 from typing import Dict, List, Tuple
+import time
+
+import numpy as np
+
 
 def compute_polygonal_representations(max_n: int = 50000) -> Tuple[np.ndarray, List[int], List[int], float]:
     """
@@ -57,6 +59,7 @@ def compute_polygonal_representations(max_n: int = 50000) -> Tuple[np.ndarray, L
     t1 = time.time()
     
     return counts, zeros, uniques, t1 - t0
+
 
 def get_representation(n: int) -> List[Tuple[int, int, int]]:
     """
