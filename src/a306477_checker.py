@@ -13,12 +13,14 @@ Note: This module provides computational verification up to a specified bound N.
       The full theoretical proof for all n >= 1 remains an open problem.
 """
 
-import math
 from typing import Dict, List, Optional, Tuple
+import math
+
 
 def comb(n: int, k: int) -> int:
     """Exact integer binomial coefficient C(n, k)."""
     return math.comb(n, k)
+
 
 def decompose_n(n: int) -> Optional[Tuple[int, int, int, int]]:
     """
@@ -64,6 +66,7 @@ def decompose_n(n: int) -> Optional[Tuple[int, int, int, int]]:
         z += 1
     return None
 
+
 def count_representations(n: int) -> int:
     """
     Counts the total number of representations of n as:
@@ -101,6 +104,7 @@ def count_representations(n: int) -> int:
         z += 1
     return count
 
+
 def check_range(max_n: int = 1000) -> Dict[str, any]:
     """
     Checks that every integer from 1 to max_n has at least one representation.
@@ -120,7 +124,7 @@ def check_range(max_n: int = 1000) -> Dict[str, any]:
         "max_n": max_n,
         "verified_count": max_n - len(uncovered),
         "uncovered": uncovered,
-        "is_conjecture_supported": len(uncovered) == 0,
+        "is_conjecture_supported": not uncovered,
         "samples": sample_decompositions
     }
 

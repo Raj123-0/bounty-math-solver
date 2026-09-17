@@ -15,8 +15,10 @@ Disclaimer:
 """
 
 from typing import List, Optional, Tuple
-import z3
 import time
+
+import z3
+
 
 def check_3color_sat(c_const: int, n: int) -> Tuple[bool, Optional[List[int]], float]:
     """
@@ -72,6 +74,7 @@ def check_3color_sat(c_const: int, n: int) -> Tuple[bool, Optional[List[int]], f
                     break
         return True, coloring, duration
     return False, None, duration
+
 
 def verify_formula_for_c(c_const: int) -> dict:
     """

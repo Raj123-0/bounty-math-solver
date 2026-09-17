@@ -14,6 +14,7 @@ Disclaimer:
 
 from typing import List, Tuple
 
+
 def verify_local_congruences(n: int) -> bool:
     """
     Checks congruence consistency modulo 3, 5, and 8 for target = 120n + 23.
@@ -31,6 +32,7 @@ def verify_local_congruences(n: int) -> bool:
         return False
         
     return True
+
 
 def solve_ternary_form(n: int) -> List[Tuple[int, int, int]]:
     """
@@ -63,5 +65,5 @@ if __name__ == '__main__':
     for n in range(101):
         assert verify_local_congruences(n), f"Congruence failed at n={n}"
         sols = solve_ternary_form(n)
-        assert len(sols) > 0, f"No solution found at n={n}"
+        assert bool(sols), f"No solution found at n={n}"
     print("Local congruence checks and representations verified for 0..100.")

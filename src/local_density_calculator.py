@@ -5,20 +5,61 @@ Description: Computes the exact p-adic local densities chi_p(n) for primes p=2, 
              via polynomial period enumeration and FFT convolution over Z/p^k Z.
 """
 
-import math
+
 import numpy as np
 
+
 def P2(w: int) -> int:
+    """P2.
+    
+    Args:
+        w:
+    
+    Returns:
+        The computed result
+    
+    """
     return (w + 2) * (w + 1) // 2
 
+
 def P4(x: int) -> int:
+    """P4.
+    
+    Args:
+        x:
+    
+    Returns:
+        The computed result
+    
+    """
     return (x + 3) * (x + 2) * (x + 1) * x // 24
 
+
 def P6(y: int) -> int:
+    """P6.
+    
+    Args:
+        y:
+    
+    Returns:
+        The computed result
+    
+    """
     return (y + 5) * (y + 4) * (y + 3) * (y + 2) * (y + 1) * y // 720
 
+
 def P8(z: int) -> int:
+    """P8.
+    
+    Args:
+        z:
+    
+    Returns:
+        The computed result
+    
+    """
     return (z + 7) * (z + 6) * (z + 5) * (z + 4) * (z + 3) * (z + 2) * (z + 1) * z // 40320
+
 
 def get_poly_distribution(poly_func, mod: int) -> np.ndarray:
     """Finds the minimal period of poly_func mod `mod` and computes the residue PMF."""
@@ -33,6 +74,7 @@ def get_poly_distribution(poly_func, mod: int) -> np.ndarray:
         counts[poly_func(t) % mod] += 1.0 / period
     return counts
 
+
 def compute_local_density_table(p: int, k: int) -> np.ndarray:
     """Computes chi_p(n) for all residue classes n in {0, 1, ..., p^k - 1}."""
     mod = p ** k
@@ -44,6 +86,7 @@ def compute_local_density_table(p: int, k: int) -> np.ndarray:
     f_tot = np.fft.fft(d2) * np.fft.fft(d4) * np.fft.fft(d6) * np.fft.fft(d8)
     prob = np.real(np.fft.ifft(f_tot))
     return prob * mod
+
 
 def compute_singular_series(n: int, primes_tables: dict, tail_bound: float) -> float:
     """Computes S(n) = prod_p chi_p(n) for a specific integer n."""
